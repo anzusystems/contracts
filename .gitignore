@@ -1,0 +1,7 @@
+# IDE
+.idea/
+.vscode/
+
+# Managed by Composer
+/vendor/
+composer.lock
