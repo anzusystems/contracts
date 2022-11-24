@@ -3,8 +3,8 @@ Enums
 
 ---
 Enums are recommended if you need to manipulate some state of entity. 
-All enum objects must implement [EnumInterface](https://github.com/anzusystems/contracts/blob/main/src/Model/Enum/EnumInterface.php)
-and use [BaseEnumTrait](https://github.com/anzusystems/contracts/blob/main/src/Model/Enum/BaseEnumTrait.php).
+All enum objects must implement [EnumInterface](../../Model/Enum/EnumInterface.php)
+and use [BaseEnumTrait](../../Model/Enum/BaseEnumTrait.php).
 Then you should override one constant:
 ```php
 public const Default = '';
