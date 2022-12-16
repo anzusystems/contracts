@@ -4,12 +4,15 @@ declare(strict_types=1);
 
 namespace AnzuSystems\Contracts\Entity;
 
-use AnzuSystems\SerializerBundle\Attributes\Serialize;
 use AnzuSystems\Contracts\Entity\Interfaces\BaseIdentifiableInterface;
 use AnzuSystems\Contracts\Entity\Interfaces\EnableInterface;
 use AnzuSystems\Contracts\Entity\Interfaces\IdentifiableInterface;
 use AnzuSystems\Contracts\Entity\Traits\EnableTrait;
 use AnzuSystems\Contracts\Entity\Traits\NamedResourceTrait;
+use AnzuSystems\Contracts\Security\UserPermissionResolver;
+use AnzuSystems\SerializerBundle\Attributes\Serialize;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -33,6 +36,30 @@ abstract class AnzuUser implements IdentifiableInterface, EnableInterface, UserI
     #[ORM\Column(type: Types::JSON)]
     #[Serialize]
     protected array $roles = [];
+
+    /**
+     * List of permissions which belongs to user.
+     *
+     * @var array<string, int>
+     */
+    #[ORM\Column(type: Types::JSON)]
+    #[Serialize(strategy: Serialize::KEYS_VALUES)]
+    protected array $permissions = [];
+
+    /**
+     * Assigned permission groups.
+     *
+     * Override in your project to get relations:
+     * #[ORM\ManyToMany(targetEntity: PermissionGroup::class, inversedBy: 'users', fetch: 'EXTRA_LAZY', indexBy: 'id')]
+     * #[ORM\JoinTable]
+     * #[Serialize(handler: EntityIdHandler::class, type: PermissionGroup::class)]
+     */
+    protected Collection $permissionGroups;
+
+    public function __construct()
+    {
+        $this->setPermissionGroups(new ArrayCollection());
+    }
 
     public function is(BaseIdentifiableInterface $identifiable): bool
     {
@@ -84,5 +111,44 @@ abstract class AnzuUser implements IdentifiableInterface, EnableInterface, UserI
         $this->roles = $roles;
 
         return $this;
+    }
+
+    /**
+     * @return array<string, int>
+     */
+    public function getPermissions(): array
+    {
+        return $this->permissions;
+    }
+
+    public function setPermissions(array $permissions): self
+    {
+        $this->permissions = $permissions;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, AnzuPermissionGroup>
+     */
+    public function getPermissionGroups(): Collection
+    {
+        return $this->permissionGroups;
+    }
+
+    public function setPermissionGroups(Collection $permissionGroups): self
+    {
+        $this->permissionGroups = $permissionGroups;
+
+        return $this;
+    }
+
+    /**
+     * @return array<string, int>
+     */
+    #[Serialize(strategy: Serialize::KEYS_VALUES)]
+    public function getResolvedPermissions(): array
+    {
+        return UserPermissionResolver::resolve($this);
     }
 }

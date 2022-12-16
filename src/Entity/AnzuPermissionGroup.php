@@ -10,6 +10,8 @@ use AnzuSystems\Contracts\Entity\Interfaces\UserTrackingInterface;
 use AnzuSystems\Contracts\Entity\Traits\IdentityTrait;
 use AnzuSystems\Contracts\Entity\Traits\TimeTrackingTrait;
 use AnzuSystems\SerializerBundle\Attributes\Serialize;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -39,11 +41,21 @@ abstract class AnzuPermissionGroup implements IdentifiableInterface, UserTrackin
     #[Serialize(strategy: Serialize::KEYS_VALUES)]
     protected array $permissions;
 
+    /**
+     * List of users who belongs to permission group.
+     *
+     * Override in your project to get relations:
+     * #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'permissionGroups', indexBy: 'id')]
+     * #[Serialize(handler: EntityIdHandler::class, type: User::class)]
+     */
+    protected Collection $users;
+
     public function __construct()
     {
         $this->setTitle('');
         $this->setDescription('');
         $this->setPermissions([]);
+        $this->setUsers(new ArrayCollection());
     }
 
     public function getTitle(): string
@@ -78,6 +90,21 @@ abstract class AnzuPermissionGroup implements IdentifiableInterface, UserTrackin
     public function setPermissions(array $permissions): self
     {
         $this->permissions = $permissions;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, AnzuUser>
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function setUsers(Collection $users): self
+    {
+        $this->users = $users;
 
         return $this;
     }
