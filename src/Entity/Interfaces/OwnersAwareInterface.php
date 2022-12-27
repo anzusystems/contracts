@@ -7,7 +7,7 @@ namespace AnzuSystems\Contracts\Entity\Interfaces;
 use AnzuSystems\Contracts\Entity\AnzuUser;
 use Doctrine\Common\Collections\Collection;
 
-interface OwnersHavingInterface
+interface OwnersAwareInterface
 {
     /**
      * @return Collection<int, AnzuUser>
