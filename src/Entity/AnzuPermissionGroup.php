@@ -14,6 +14,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 abstract class AnzuPermissionGroup implements IdentifiableInterface, UserTrackingInterface, TimeTrackingInterface
 {
@@ -25,6 +26,7 @@ abstract class AnzuPermissionGroup implements IdentifiableInterface, UserTrackin
      */
     #[ORM\Column(type: Types::STRING, length: 255, unique: true)]
     #[Serialize]
+    #[Assert\Length(min: 3, max: 255)]
     protected string $title;
 
     /**
@@ -32,6 +34,7 @@ abstract class AnzuPermissionGroup implements IdentifiableInterface, UserTrackin
      */
     #[ORM\Column(type: Types::STRING, length: 2_000)]
     #[Serialize]
+    #[Assert\Length(max: 2_000)]
     protected string $description;
 
     /**
