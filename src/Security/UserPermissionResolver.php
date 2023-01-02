@@ -15,7 +15,7 @@ final class UserPermissionResolver
     public static function resolve(AnzuUser $user): array
     {
         return array_merge(
-            self::resolveForGroups($user->getPermissionGroups()),
+            self::resolveGroupPermissions($user->getPermissionGroups()),
             $user->getPermissions()
         );
     }
@@ -23,7 +23,7 @@ final class UserPermissionResolver
     /**
      * @param iterable<int, AnzuPermissionGroup> $permissionGroups
      */
-    public static function resolveForGroups(iterable $permissionGroups): array
+    private static function resolveGroupPermissions(iterable $permissionGroups): array
     {
         $permissions = [];
         foreach ($permissionGroups as $permissionGroup) {
