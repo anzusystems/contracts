@@ -18,11 +18,13 @@
     },
     "require-dev": {
         "doctrine/orm": "^2.12",
-        "anzusystems/serializer-bundle": "dev-main"
+        "anzusystems/serializer-bundle": "^1.0",
+        "symfony/validator": "^6.0"
     },
     "suggest": {
         "doctrine/orm": "Support persistence for trait/abstract class properties.",
-        "anzusystems/serializer-bundle": "Support serialization of trait/abstract class members."
+        "anzusystems/serializer-bundle": "Support serialization of trait/abstract class members.",
+        "symfony/validator": "Support validation via symfony asserts."
     },
     "autoload": {
         "psr-4": {

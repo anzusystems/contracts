@@ -21,6 +21,7 @@ $ composer require anzusystems/contracts
 * [CopyableInterface](src/Entity/Interfaces/CopyableInterface.php)
 * [IndexableInterface](src/Entity/Interfaces/IndexableInterface.php)
 * [EnableInterface](src/Entity/Interfaces/EnableInterface.php) - [EnableTrait](src/Entity/Traits/EnableTrait.php)
+* [OwnersAwareInterface](src/Entity/Interfaces/OwnersAwareInterface.php)
 * [TimeTrackingInterface](src/Entity/Interfaces/TimeTrackingInterface.php) - [TimeTrackingTrait](src/Entity/Traits/TimeTrackingTrait.php)
 * [UserTrackingInterface](src/Entity/Interfaces/UserTrackingInterface.php)
 * [ValueObjectInterface](src/Model/ValueObject/ValueObjectInterface.php) - [AbstractValueObject](src/Model/ValueObject/AbstractValueObject.php)
@@ -33,6 +34,9 @@ $ composer require anzusystems/contracts
 
 * [AnzuApp](src/AnzuApp.php)
 * [AnzuUser](src/Entity/AnzuUser.php)
+    * [UserPermissionResolver](src/Security/UserPermissionResolver.php)
+* [AnzuPermissionGroup](src/Entity/AnzuPermissionGroup.php)
+* [Grant](src/Security/Grant.php)
 
 ### Exception
 
