@@ -116,6 +116,9 @@ final class UserDto
         return $this;
     }
 
+    /**
+     * @return Collection<int, AnzuPermissionGroup>
+     */
     public function getPermissionGroups(): Collection
     {
         return $this->permissionGroups;
