@@ -31,6 +31,13 @@ abstract class AnzuUser implements IdentifiableInterface, EnableInterface, UserI
     protected ?int $id = null;
 
     /**
+     * Unique Email of user.
+     */
+    #[ORM\Column(type: Types::STRING, length: 256, unique: true)]
+    #[Serialize]
+    private string $email = '';
+
+    /**
      * List of assigned roles.
      */
     #[ORM\Column(type: Types::JSON)]
@@ -83,6 +90,18 @@ abstract class AnzuUser implements IdentifiableInterface, EnableInterface, UserI
     public function setId(?int $id): static
     {
         $this->id = $id;
+
+        return $this;
+    }
+
+    public function getEmail(): string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
 
         return $this;
     }
