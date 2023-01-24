@@ -35,7 +35,7 @@ abstract class AnzuUser implements IdentifiableInterface, EnableInterface, UserI
      */
     #[ORM\Column(type: Types::STRING, length: 256, unique: true)]
     #[Serialize]
-    private string $email = '';
+    protected string $email = '';
 
     /**
      * List of assigned roles.
