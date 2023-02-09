@@ -15,6 +15,9 @@ use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
+/**
+ * @deprecated Use UserDto from anzusystems/common-bundle
+ */
 final class UserDto
 {
     #[Serialize]
