@@ -68,6 +68,11 @@ abstract class AnzuUser implements IdentifiableInterface, EnableInterface, UserI
         $this->setPermissionGroups(new ArrayCollection());
     }
 
+    public function getUserIdentifier(): string
+    {
+        return (string) $this->getId();
+    }
+
     public function is(BaseIdentifiableInterface $identifiable): bool
     {
         if ($identifiable::getResourceName() === static::getResourceName()) {

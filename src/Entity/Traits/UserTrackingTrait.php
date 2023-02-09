@@ -23,12 +23,7 @@ trait UserTrackingTrait
     #[Serialize(handler: EntityIdHandler::class, type: new ContainerParam(AnzuUser::class))]
     public function getCreatedBy(): AnzuUser
     {
-        return $this->createdBy ?? new class extends AnzuUser {
-            public function getUserIdentifier(): string
-            {
-                return '';
-            }
-        };
+        return $this->createdBy ?? new class extends AnzuUser {};
     }
 
     public function setCreatedBy(AnzuUser $createdBy): static
@@ -41,12 +36,7 @@ trait UserTrackingTrait
     #[Serialize(handler: EntityIdHandler::class, type: new ContainerParam(AnzuUser::class))]
     public function getModifiedBy(): AnzuUser
     {
-        return $this->modifiedBy ?? new class extends AnzuUser {
-            public function getUserIdentifier(): string
-            {
-                return '';
-            }
-        };
+        return $this->modifiedBy ?? new class extends AnzuUser {};
     }
 
     public function setModifiedBy(AnzuUser $modifiedBy): static
