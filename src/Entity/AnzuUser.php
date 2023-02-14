@@ -104,7 +104,7 @@ abstract class AnzuUser implements IdentifiableInterface, EnableInterface, UserI
         return $this->email;
     }
 
-    public function setEmail(string $email): self
+    public function setEmail(string $email): static
     {
         $this->email = $email;
 
@@ -145,7 +145,7 @@ abstract class AnzuUser implements IdentifiableInterface, EnableInterface, UserI
         return $this->permissions;
     }
 
-    public function setPermissions(array $permissions): self
+    public function setPermissions(array $permissions): static
     {
         $this->permissions = $permissions;
 
@@ -160,7 +160,7 @@ abstract class AnzuUser implements IdentifiableInterface, EnableInterface, UserI
         return $this->permissionGroups;
     }
 
-    public function setPermissionGroups(Collection $permissionGroups): self
+    public function setPermissionGroups(Collection $permissionGroups): static
     {
         $this->permissionGroups = $permissionGroups;
 

@@ -66,7 +66,7 @@ abstract class AnzuPermissionGroup implements IdentifiableInterface, UserTrackin
         return $this->title;
     }
 
-    public function setTitle(string $title): self
+    public function setTitle(string $title): static
     {
         $this->title = $title;
 
@@ -78,7 +78,7 @@ abstract class AnzuPermissionGroup implements IdentifiableInterface, UserTrackin
         return $this->description;
     }
 
-    public function setDescription(string $description): self
+    public function setDescription(string $description): static
     {
         $this->description = $description;
 
@@ -90,7 +90,7 @@ abstract class AnzuPermissionGroup implements IdentifiableInterface, UserTrackin
         return $this->permissions;
     }
 
-    public function setPermissions(array $permissions): self
+    public function setPermissions(array $permissions): static
     {
         $this->permissions = $permissions;
 
@@ -105,7 +105,7 @@ abstract class AnzuPermissionGroup implements IdentifiableInterface, UserTrackin
         return $this->users;
     }
 
-    public function setUsers(Collection $users): self
+    public function setUsers(Collection $users): static
     {
         $this->users = $users;
 
