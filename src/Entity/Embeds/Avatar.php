@@ -13,7 +13,7 @@ class Avatar
     #[ORM\Column(type: Types::STRING, length: 6)]
     #[Assert\CssColor(formats: Assert\CssColor::HEX_LONG)]
     #[Serialize]
-    private string $avatarColor = '';
+    private string $color = '';
 
     #[ORM\Column(type: Types::STRING, length: 3)]
     #[Assert\AtLeastOneOf([
@@ -21,28 +21,28 @@ class Avatar
         new Assert\Length(min: 2, max: 3),
     ])]
     #[Serialize]
-    private string $avatarText = '';
+    private string $text = '';
 
-    public function getAvatarColor(): string
+    public function getColor(): string
     {
-        return $this->avatarColor;
+        return $this->color;
     }
 
-    public function setAvatarColor(string $avatarColor): self
+    public function setColor(string $color): self
     {
-        $this->avatarColor = $avatarColor;
+        $this->color = $color;
 
         return $this;
     }
 
-    public function getAvatarText(): string
+    public function getText(): string
     {
-        return $this->avatarText;
+        return $this->text;
     }
 
-    public function setAvatarText(string $avatarText): self
+    public function setText(string $text): self
     {
-        $this->avatarText = $avatarText;
+        $this->text = $text;
 
         return $this;
     }
