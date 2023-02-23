@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace AnzuSystems\Contracts\Entity;
 
+use AnzuSystems\Contracts\Entity\Embeds\Avatar;
+use AnzuSystems\Contracts\Entity\Embeds\Person;
 use AnzuSystems\Contracts\Entity\Interfaces\BaseIdentifiableInterface;
 use AnzuSystems\Contracts\Entity\Interfaces\EnableInterface;
 use AnzuSystems\Contracts\Entity\Interfaces\IdentifiableInterface;
@@ -16,6 +18,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 abstract class AnzuUser implements IdentifiableInterface, EnableInterface, UserInterface
 {
@@ -34,8 +37,19 @@ abstract class AnzuUser implements IdentifiableInterface, EnableInterface, UserI
      * Unique Email of user.
      */
     #[ORM\Column(type: Types::STRING, length: 256, unique: true)]
+    #[Assert\Email]
     #[Serialize]
     protected string $email = '';
+
+    #[ORM\Embedded(class: Person::class)]
+    #[Assert\Valid]
+    #[Serialize]
+    protected Person $person;
+
+    #[ORM\Embedded(class: Avatar::class)]
+    #[Assert\Valid]
+    #[Serialize]
+    protected Avatar $avatar;
 
     /**
      * List of assigned roles.
@@ -66,6 +80,8 @@ abstract class AnzuUser implements IdentifiableInterface, EnableInterface, UserI
     public function __construct()
     {
         $this->setPermissionGroups(new ArrayCollection());
+        $this->setAvatar(new Avatar());
+        $this->setPerson(new Person());
     }
 
     public function getUserIdentifier(): string
@@ -111,14 +127,28 @@ abstract class AnzuUser implements IdentifiableInterface, EnableInterface, UserI
         return $this;
     }
 
-    public function getPassword(): ?string
+    public function getPerson(): Person
     {
-        return null;
+        return $this->person;
     }
 
-    public function getSalt(): ?string
+    public function setPerson(Person $person): static
     {
-        return null;
+        $this->person = $person;
+
+        return $this;
+    }
+
+    public function getAvatar(): Avatar
+    {
+        return $this->avatar;
+    }
+
+    public function setAvatar(Avatar $avatar): static
+    {
+        $this->avatar = $avatar;
+
+        return $this;
     }
 
     public function eraseCredentials(): void
