@@ -132,7 +132,7 @@ abstract class AnzuUser implements IdentifiableInterface, EnableInterface, UserI
         return $this->person;
     }
 
-    public function setPerson(Person $person): self
+    public function setPerson(Person $person): static
     {
         $this->person = $person;
 
@@ -144,7 +144,7 @@ abstract class AnzuUser implements IdentifiableInterface, EnableInterface, UserI
         return $this->avatar;
     }
 
-    public function setAvatar(Avatar $avatar): self
+    public function setAvatar(Avatar $avatar): static
     {
         $this->avatar = $avatar;
 
