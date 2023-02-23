@@ -16,7 +16,7 @@ class Person
         new Assert\Length(min: 2, max: 120),
     ])]
     #[Serialize]
-    private string $personFirstName = '';
+    private string $firstName = '';
 
     #[ORM\Column(type: Types::STRING, length: 120)]
     #[Assert\AtLeastOneOf([
@@ -24,7 +24,7 @@ class Person
         new Assert\Length(min: 2, max: 120),
     ])]
     #[Serialize]
-    private string $personLastName = '';
+    private string $lastName = '';
 
     #[ORM\Column(type: Types::STRING, length: 242)]
     #[Assert\AtLeastOneOf([
@@ -32,40 +32,40 @@ class Person
         new Assert\Length(min: 3, max: 242),
     ])]
     #[Serialize]
-    private string $personFullName = '';
+    private string $fullName = '';
 
-    public function getPersonFirstName(): string
+    public function getFirstName(): string
     {
-        return $this->personFirstName;
+        return $this->firstName;
     }
 
-    public function setPersonFirstName(string $personFirstName): self
+    public function setFirstName(string $firstName): self
     {
-        $this->personFirstName = $personFirstName;
+        $this->firstName = $firstName;
 
         return $this;
     }
 
-    public function getPersonLastName(): string
+    public function getLastName(): string
     {
-        return $this->personLastName;
+        return $this->lastName;
     }
 
-    public function setPersonLastName(string $personLastName): self
+    public function setLastName(string $lastName): self
     {
-        $this->personLastName = $personLastName;
+        $this->lastName = $lastName;
 
         return $this;
     }
 
-    public function getPersonFullName(): string
+    public function getFullName(): string
     {
-        return $this->personFullName;
+        return $this->fullName;
     }
 
-    public function setPersonFullName(string $personFullName): self
+    public function setFullName(string $fullName): self
     {
-        $this->personFullName = $personFullName;
+        $this->fullName = $fullName;
 
         return $this;
     }
