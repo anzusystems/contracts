@@ -26,7 +26,7 @@ class Person
     #[Serialize]
     private string $personLastName = '';
 
-    #[ORM\Column(type: Types::STRING, length: 240)]
+    #[ORM\Column(type: Types::STRING, length: 242)]
     #[Assert\AtLeastOneOf([
         new Assert\Blank(),
         new Assert\Length(min: 3, max: 242),
