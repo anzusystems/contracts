@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Embeddable]
 class Avatar
 {
-    #[ORM\Column(type: Types::STRING, length: 6)]
+    #[ORM\Column(type: Types::STRING, length: 7)]
     #[Assert\CssColor(formats: Assert\CssColor::HEX_LONG)]
     #[Serialize]
     private string $color = '';
