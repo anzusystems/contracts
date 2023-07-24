@@ -165,6 +165,20 @@ class AnzuApp
     }
 
     /**
+     * Create new DateTimeImmutable (or use appDate) without IDE warning of unhandled exception.
+     *
+     * @noinspection PhpUnhandledExceptionInspection
+     */
+    public static function date(?string $datetime = null): DateTimeImmutable
+    {
+        if (null === $datetime) {
+            return self::getAppDate();
+        }
+
+        return new DateTimeImmutable($datetime);
+    }
+
+    /**
      * Get dateTime of start of unix epoch.
      */
     public static function getMinDate(): DateTimeImmutable
