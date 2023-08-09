@@ -15,7 +15,7 @@ trait CustomDataTrait
      */
     #[ORM\Column(type: Types::JSON)]
     #[Serialize(strategy: Serialize::KEYS_VALUES)]
-    protected array $customData;
+    protected array $customData = [];
 
     public function getCustomData(): array
     {

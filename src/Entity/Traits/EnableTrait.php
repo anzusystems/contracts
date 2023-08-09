@@ -15,7 +15,7 @@ trait EnableTrait
      */
     #[ORM\Column(type: Types::BOOLEAN)]
     #[Serialize]
-    protected bool $enabled;
+    protected bool $enabled = true;
 
     public function isEnabled(): bool
     {
