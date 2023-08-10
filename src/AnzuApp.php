@@ -34,7 +34,7 @@ class AnzuApp
      * Run at kernel boot.
      */
     public static function init(
-        string $appCompany,
+        string $appNamespace,
         string $appSystem,
         string $appVersion,
         bool $appReadOnlyMode,
@@ -45,7 +45,7 @@ class AnzuApp
         int $userIdAnonymous = 3,
         string $contextId = '',
     ): void {
-        self::$appNamespace = $appCompany;
+        self::$appNamespace = $appNamespace;
         self::$appSystem = $appSystem;
         self::$appVersion = $appVersion;
         self::$appReadOnlyMode = $appReadOnlyMode;
