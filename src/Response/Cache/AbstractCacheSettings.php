@@ -31,9 +31,9 @@ abstract class AbstractCacheSettings implements CacheSettingsInterface
         return '';
     }
 
-    public static function getSystemXkey(): string
+    public static function getProjectXkey(): string
     {
-        return 'anzu-' . AnzuApp::getAppSystem();
+        return 'anzu-' . AnzuApp::getAppNamespace() . '-' . AnzuApp::getAppSystem();
     }
 
     /**
@@ -47,8 +47,8 @@ abstract class AbstractCacheSettings implements CacheSettingsInterface
     private function setXKeys(Response $response): void
     {
         $xKeys = [
-            self::getSystemXkey(),
-            ...$this->getXKeys(),
+            self::getProjectXkey(),
+            ...array_map(fn (string $key) => self::getProjectXkey() . '-' . $key, $this->getXKeys()),
         ];
         $response->headers->set('xkey', implode(' ', $xKeys));
     }
