@@ -12,5 +12,5 @@ interface CacheSettingsInterface
 
     public static function buildXKeyFromObject(object $data): string;
 
-    public static function getSystemXkey(): string;
+    public static function getProjectXkey(): string;
 }

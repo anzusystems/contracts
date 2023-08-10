@@ -23,6 +23,7 @@ class AnzuApp
     private static string $contextId = '';
     private static bool $initialized = false;
     private static bool $appReadOnlyMode;
+    private static string $appNamespace;
     private static string $appSystem;
     private static string $appVersion;
     private static int $userIdAdmin;
@@ -33,6 +34,7 @@ class AnzuApp
      * Run at kernel boot.
      */
     public static function init(
+        string $appCompany,
         string $appSystem,
         string $appVersion,
         bool $appReadOnlyMode,
@@ -43,6 +45,7 @@ class AnzuApp
         int $userIdAnonymous = 3,
         string $contextId = '',
     ): void {
+        self::$appNamespace = $appCompany;
         self::$appSystem = $appSystem;
         self::$appVersion = $appVersion;
         self::$appReadOnlyMode = $appReadOnlyMode;
@@ -109,6 +112,13 @@ class AnzuApp
         self::throwExceptionOnNotInitialized();
 
         return self::$appVersion;
+    }
+
+    public static function getAppNamespace(): string
+    {
+        self::throwExceptionOnNotInitialized();
+
+        return self::$appNamespace;
     }
 
     public static function getAppSystem(): string
