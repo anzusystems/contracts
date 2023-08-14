@@ -22,6 +22,11 @@ trait EnableTrait
         return $this->enabled;
     }
 
+    public function isDisabled(): bool
+    {
+        return false === $this->isEnabled();
+    }
+
     public function setEnabled(bool $enabled): static
     {
         $this->enabled = $enabled;
