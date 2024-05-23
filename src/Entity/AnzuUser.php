@@ -20,6 +20,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
+#[ORM\MappedSuperclass]
 abstract class AnzuUser implements IdentifiableInterface, EnableInterface, UserInterface
 {
     use NamedResourceTrait;
