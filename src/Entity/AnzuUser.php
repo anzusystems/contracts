@@ -20,6 +20,9 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
+/**
+ * @psalm-consistent-constructor
+ */
 #[ORM\MappedSuperclass]
 abstract class AnzuUser implements IdentifiableInterface, EnableInterface, UserInterface
 {
@@ -28,6 +31,7 @@ abstract class AnzuUser implements IdentifiableInterface, EnableInterface, UserI
 
     public const ROLE_ADMIN = 'ROLE_ADMIN';
     public const ROLE_USER = 'ROLE_USER';
+    public const ROLE_SUPER_ADMIN = 'ROLE_SUPER_ADMIN';
 
     #[ORM\Column(type: Types::INTEGER)]
     #[ORM\Id]
