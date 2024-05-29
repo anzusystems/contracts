@@ -9,8 +9,12 @@ use AnzuSystems\Contracts\Entity\Embeds\Person;
 use AnzuSystems\Contracts\Entity\Interfaces\BaseIdentifiableInterface;
 use AnzuSystems\Contracts\Entity\Interfaces\EnableInterface;
 use AnzuSystems\Contracts\Entity\Interfaces\IdentifiableInterface;
+use AnzuSystems\Contracts\Entity\Interfaces\TimeTrackingInterface;
+use AnzuSystems\Contracts\Entity\Interfaces\UserTrackingInterface;
 use AnzuSystems\Contracts\Entity\Traits\EnableTrait;
 use AnzuSystems\Contracts\Entity\Traits\NamedResourceTrait;
+use AnzuSystems\Contracts\Entity\Traits\TimeTrackingTrait;
+use AnzuSystems\Contracts\Entity\Traits\UserTrackingTrait;
 use AnzuSystems\Contracts\Security\UserPermissionResolver;
 use AnzuSystems\SerializerBundle\Attributes\Serialize;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -24,10 +28,17 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @psalm-consistent-constructor
  */
 #[ORM\MappedSuperclass]
-abstract class AnzuUser implements IdentifiableInterface, EnableInterface, UserInterface
+abstract class AnzuUser implements
+    IdentifiableInterface,
+    EnableInterface,
+    UserInterface,
+    UserTrackingInterface,
+    TimeTrackingInterface
 {
     use NamedResourceTrait;
     use EnableTrait;
+    use UserTrackingTrait;
+    use TimeTrackingTrait;
 
     public const ROLE_ADMIN = 'ROLE_ADMIN';
     public const ROLE_USER = 'ROLE_USER';
