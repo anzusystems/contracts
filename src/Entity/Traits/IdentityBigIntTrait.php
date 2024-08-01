@@ -9,10 +9,7 @@ use AnzuSystems\Contracts\Entity\Interfaces\BaseIdentifiableInterface;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @deprecated Use IdentityIntTrait
- */
-trait IdentityTrait
+trait IdentityBigIntTrait
 {
     use NamedResourceTrait;
 
@@ -21,7 +18,7 @@ trait IdentityTrait
      */
     #[ORM\Id]
     #[ORM\GeneratedValue(strategy: 'AUTO')]
-    #[ORM\Column(type: Types::INTEGER)]
+    #[ORM\Column(type: Types::BIGINT, options: ['unsigned' => true])]
     #[Serialize]
     protected ?int $id = null;
 
