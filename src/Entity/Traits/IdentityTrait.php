@@ -9,6 +9,9 @@ use AnzuSystems\Contracts\Entity\Interfaces\BaseIdentifiableInterface;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * @deprecated Use IdentityIntTrait
+ */
 trait IdentityTrait
 {
     use NamedResourceTrait;
