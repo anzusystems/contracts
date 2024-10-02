@@ -13,7 +13,7 @@ trait PositionAwareTrait
     /**
      * Used for ordering of entities used in lists.
      */
-    #[ORM\Column(type: Types::SMALLINT)]
+    #[ORM\Column(type: Types::SMALLINT, options: ['default' => 0])]
     #[Serialize]
     protected int $position = 0;
 
