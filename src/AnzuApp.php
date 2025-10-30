@@ -8,6 +8,8 @@ use AnzuSystems\Contracts\Exception\AnzuException;
 use AnzuSystems\Contracts\Exception\AppReadOnlyModeException;
 use DateTimeImmutable;
 use RuntimeException;
+use Sentry\SentrySdk;
+use Sentry\State\Scope;
 
 class AnzuApp
 {
@@ -89,7 +91,7 @@ class AnzuApp
     public static function getContextId(): string
     {
         if ('' === self::$contextId) {
-            self::$contextId = (string) uuid_create();
+            self::setContextId((string) uuid_create());
         }
 
         return self::$contextId;
@@ -98,6 +100,12 @@ class AnzuApp
     public static function setContextId(string $contextId): void
     {
         self::$contextId = $contextId;
+
+        if (class_exists(SentrySdk::class)) {
+            SentrySdk::getCurrentHub()->configureScope(function (Scope $scope) {
+                $scope->setTag('contextId', self::$contextId);
+            });
+        }
     }
 
     public static function getAppEnv(): string
