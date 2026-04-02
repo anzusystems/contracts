@@ -68,6 +68,7 @@ abstract class AnzuUser implements
     protected Avatar $avatar;
 
     #[ORM\Column(type: Types::STRING, length: 5, nullable: true)]
+    #[Assert\Locale]
     #[Serialize]
     protected ?string $locale = null;
 
