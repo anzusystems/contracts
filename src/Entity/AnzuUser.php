@@ -67,6 +67,10 @@ abstract class AnzuUser implements
     #[Serialize]
     protected Avatar $avatar;
 
+    #[ORM\Column(type: Types::STRING, length: 5, nullable: true)]
+    #[Serialize]
+    protected ?string $locale = null;
+
     /**
      * List of assigned roles.
      */
@@ -163,6 +167,18 @@ abstract class AnzuUser implements
     public function setAvatar(Avatar $avatar): static
     {
         $this->avatar = $avatar;
+
+        return $this;
+    }
+
+    public function getLocale(): ?string
+    {
+        return $this->locale;
+    }
+
+    public function setLocale(?string $locale): static
+    {
+        $this->locale = $locale;
 
         return $this;
     }
